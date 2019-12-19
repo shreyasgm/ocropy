@@ -23,7 +23,7 @@ from multiprocessing import Pool
 
 import numpy as np
 from scipy.ndimage import measurements
-from scipy.misc import imsave
+import imageio
 from scipy.ndimage.filters import gaussian_filter,uniform_filter,maximum_filter
 
 import ocrolib
@@ -110,7 +110,7 @@ def find(condition):
     "Return the indices where ravel(condition) is true"
     res, = np.nonzero(np.ravel(condition))
     return res
-    
+
 def norm_max(v):
     return v/np.amax(v)
 
@@ -162,7 +162,7 @@ def DSAVE(title,image):
         image = np.transpose(np.array(image),[1,2,0])
     fname = "_"+title+".png"
     print_info("debug " + fname)
-    imsave(fname,image.astype('float'))
+    imageio.imwrite(fname,image.astype('float'))
 
 
 ################################################################
